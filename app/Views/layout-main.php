@@ -7,6 +7,8 @@
     <script src="/public/static/layui/layui.js?v=<?=time()?>"></script>
     <script src="/public/static/common.js?v=<?=time()?>"></script>
     <script src="/public/static/clipboard/dist/clipboard.min.js?v=<?=time()?>"></script>
+	<script src="/public/static/demo-recorder/js/recorder.js?v=<?=time()?>"></script>
+	<script src="/public/static/demo-recorder/js/app.js?v=<?=time()?>"></script>
 </head>
 <body style="height: 100%;">
 	<div class="layui-layout layui-layout-admin">

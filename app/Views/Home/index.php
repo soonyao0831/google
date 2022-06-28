@@ -1,6 +1,18 @@
 <fieldset class="layui-field-title" style="margin-top: 20px;">
 	<legend>首页</legend>
 </fieldset>点击即可复制
+
+<!--     <div id="controls">
+  		<button id="recordButton">Record</button>
+  		<button id="pauseButton" disabled>Pause</button>
+  		<button id="stopButton" disabled>Stop</button>
+    </div>
+    <div id="formats">Format: start recording to see sample rate</div>
+  	<p><strong>Recordings:</strong></p>
+  	<ol id="recordingsList"></ol>
+<audio src="/public/1656386532.wav" controls controlsList="nodownload"></audio> -->
+
+
 <hr class="layui-border-black">
 <div class="layui-bg-gray" style="padding: 30px;">
 	<div class="layui-row layui-col-space15" id="otpPanel">
@@ -11,6 +23,26 @@
 	layui.use(['element', 'layer', 'util', 'laydate'], function(){
 	    var element = layui.element, layer = layui.layer, util = layui.util, $ = layui.$;
 	    var laydate = layui.laydate;
+
+	    //webkitURL is deprecated but nevertheless
+		// URL = window.URL || window.webkitURL;
+
+		// var gumStream; 						//stream from getUserMedia()
+		// var rec; 							//Recorder.js object
+		// var input; 							//MediaStreamAudioSourceNode we'll be recording
+
+		// shim for AudioContext when it's not avb.
+		// var AudioContext = window.AudioContext || window.webkitAudioContext;
+		// var audioContext;
+
+		// var recordButton = document.getElementById("recordButton");
+		// var stopButton = document.getElementById("stopButton");
+		// var pauseButton = document.getElementById("pauseButton");
+
+		//add events to those 2 buttons
+		// recordButton.addEventListener("click", startRecording);
+		// stopButton.addEventListener("click", stopRecording);
+		// pauseButton.addEventListener("click", pauseRecording);
 
 		$('#otpPanel').html();
 		loading = layer.load(1, {shade: [0.1,'#fff']});

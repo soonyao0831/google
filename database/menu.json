@@ -10,13 +10,13 @@
 		"menu_path" : "/web/user/list"
 	},
 	{
-		"id" : 3,
-		"menu_name" : "白名单列表",
-		"menu_path" : "#"
+		"id":3,
+		"menu_name":"OTP列表",
+		"menu_path":"/web/otp/list"
 	},
 	{
-		"id":4,
-		"menu_name":"OTP列表",
-		"menu_path":"#"
+		"id" : 4,
+		"menu_name" : "白名单列表",
+		"menu_path" : "#"
 	}
 ]

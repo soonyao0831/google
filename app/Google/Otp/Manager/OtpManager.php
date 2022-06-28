@@ -51,6 +51,19 @@ class OtpManager extends AbstractReadFileService {
 		return $otpList;
 	}
 
+	public function getOtpListWithTable($data) {
+		$otpList = $this->readFile()[1]['data'];
+
+		$aes = new AesEncryptorService();
+		foreach ($otpList as $key => $value) {
+			$otpList[$key]['id'] = $aes->encrypt(strval($value['id']));
+		}
+		$offset = ($data['page'] - 1) * $data['limit'];
+		$response['data'] = array_slice($otpList, $offset, $data['limit']);
+		$response['total'] = count($otpList);
+		return $response;
+	}
+
 	public function resetFile() {
 		$otpList = $this->readFile();
 		$otpList[1]['data'] = $this->resetId($otpList[1]['data']);
@@ -58,6 +71,47 @@ class OtpManager extends AbstractReadFileService {
 		$totalList = count($otpList[1]['data']);
 		$otpList[0]['last_id'] = $totalList;
 
+		$this->writeFile($otpList);
+	}
+
+	public function checkOtpExist($column, $data) {
+		$otpList = $this->readFile()[1]['data'];
+		foreach ($otpList as $key => $value) {
+			if ($value[$column] == $data) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public function getOtp($column, $data) {
+		$otpList = $this->readFile()[1]['data'];
+		foreach ($otpList as $key => $value) {
+			if ($value[$column] == $data) {
+				return $otpList[$key];
+			}
+		}
+	}
+
+	public function addOtp($data) {
+		$otpList = $this->readfile();
+		$getNextId = $this->getNextId($otpList[1]['data']);
+		$data['id'] = $getNextId;
+		$otpList[1]['data'][] = $data;
+		$this->writeFile($otpList);
+	}
+
+	public function editOtp($data) {
+		$otpList = $this->readfile();
+
+		$aes = new AesEncryptorService();
+		foreach ($otpList[1]['data'] as $key => $value) {
+			if ($value['id'] == $aes->decrypt(strval($data['id']))) {
+				$otpList[1]['data'][$key]['display_name'] = $data['display_name'];
+				$otpList[1]['data'][$key]['secret'] = $data['secret'];
+				break;
+			}
+		}
 		$this->writeFile($otpList);
 	}
 
