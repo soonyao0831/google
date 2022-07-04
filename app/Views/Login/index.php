@@ -35,7 +35,6 @@
         form.on('submit(submitBtn)', function(data){
             loading = layer.load(1, {shade: [0.1,'#fff']});
             $.post("/auth/login", data.field, function (res) {
-                console.log(res);
                 layer.close(loading);
                 if (res.success) {
                     layer.msg(res.message, {time: 1500, icon: 1}, function () {
@@ -49,10 +48,10 @@
             return false;
         });
 
-        $('#loginForm').keypress(function(e){
-            if(e.which == 13){
-                $('#loginBtn').click();
-            }
-        });
+        // $('#loginForm').keypress(function(e){
+        //     if(e.which == 13){
+        //         $('#loginBtn').click();
+        //     }
+        // });
     });
 </script>

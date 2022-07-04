@@ -81,7 +81,6 @@
             loading =layer.load(1, {shade: [0.1,'#fff']});
 
             $.post("/add/user", data.field, function (res) {
-            	console.log(res);
                 layer.close(loading);
                 if (res.success) {
                     layer.msg(res.message, {time: 1500, icon: 1}, function () {

@@ -33,7 +33,7 @@
 	                </a>
 	                <dl class="layui-nav-child">
 	                    <dd><a href="#">个人档案</a></dd>
-	                    <dd><a href="">设置</a></dd>
+	                    <dd><a href="/web/user/password">设置</a></dd>
 	                    <dd><a href="#" id="logoutBtn">退出</a></dd>
 	                </dl>
 	            </li>

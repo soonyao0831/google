@@ -13,4 +13,8 @@ return [
 		"layout" => "layout-modal.php",
 		"view" => "User/modal-edit-user.php",
 	],
+	"/web/user/password" => [
+		"layout" => "layout-main.php",
+		"view" => "User/change-password.php",
+	],
 ];

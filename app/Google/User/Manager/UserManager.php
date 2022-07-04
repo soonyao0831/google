@@ -110,6 +110,36 @@ class UserManager extends AbstractReadFileService {
 		return $user;
 	}
 
+	public function updateLogoutStatus($username) {
+		$userList = $this->readFile();
+
+		foreach ($userList as $key => $value) {
+			if ($value['username'] == $username) {
+				$userList[$key]['is_login'] = 0;
+				$userList[$key]['logout_time'] = date('Y-m-d H:i:s', time());
+				break;
+			}
+		}
+
+		$this->writeFile($userList);
+	}
+
+	public function updatePassword($username, $data) {
+		$userList = $this->readFile();
+
+		$ok = false;
+		foreach ($userList as $key => $value) {
+			if ($value['username'] == $username && $value['password'] == $data['current_password']) {
+				$userList[$key]['password'] = $data['new_password'];
+				$userList[$key] = $this->setCommonEditColumn($userList[$key]);
+				$ok = true;
+				break;
+			}
+		}
+		$this->writeFile($userList);
+		return $ok;
+	}
+
 	public function getUserByUsername($data) {
 		$list = $this->findUniqueData("username", $data['username']);
 		return $list;

@@ -60,7 +60,7 @@ abstract class HttpAbstractService {
 		return $this->response->withHeader('Content-Type', 'application/json')->withStatus(200);
 	}
 
-	protected function failRespond($data = null, $message = null, $success = false, int $statusCode = 200): Response{
+	protected function failRespond($data = null, $message = "失败", $success = false, int $statusCode = 200): Response{
 		$payload = new ServicePayload($statusCode, $message, $data, $success);
 		$json = json_encode($payload, JSON_PRETTY_PRINT);
 		$this->response->getBody()->write($json);

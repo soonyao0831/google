@@ -1,6 +1,7 @@
 <?php
 
 use App\Google\User\Service\AddUserService;
+use App\Google\User\Service\ChangeUserPasswordService;
 use App\Google\User\Service\EditUserService;
 use App\Google\User\Service\GetUserListService;
 use App\Google\User\Service\GetUserProfileService;
@@ -25,5 +26,8 @@ return [
 	],
 	"/get/user/with/all/permission/data" => [
 		"service" => GetUserWithAllPermissionService::class,
+	],
+	"/change/user/password" => [
+		"service" => ChangeUserPasswordService::class,
 	],
 ];

@@ -12,10 +12,13 @@ use Slim\Psr7\Response;
 
 class AuthorizationMiddleware {
 
-	public function __invoke(Request $request, RequestHandler $handler): Response{
+	public function __invoke(Request $request, RequestHandler $handler): Response {
+		if (!in_array(getRealIp(), ["::1", "202.87.221.8"])) {
+			echo "Please Whitelist your IP! (" . getRealIp() . ")";
+			exit();
+		}
 		session_start();
 		$path = $request->getUri()->getPath();
-
 		if ($path != "/web/login" && $path != "/auth/login") {
 			if (!isset($_SESSION['expire'])) {
 				header("Location: /web/login");
@@ -23,6 +26,7 @@ class AuthorizationMiddleware {
 			}
 			$expire = $_SESSION['expire'];
 			if (time() >= $expire) {
+				$this->setLogoutStatus();
 				header("Location: /web/login");
 				exit();
 			}
@@ -80,5 +84,10 @@ class AuthorizationMiddleware {
 			header("Location: /web/login");
 			exit();
 		}
+	}
+
+	private function setLogoutStatus() {
+		$manager = new UserManager();
+		$manager->updateLogoutStatus($_SESSION['username']);
 	}
 }

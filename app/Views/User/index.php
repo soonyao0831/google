@@ -32,10 +32,17 @@
 			    {type:'numbers'},
 			    {field: 'username', title: '账户'},
 			    {field: 'display_name', title: '用户名称'},
-			    {field: 'is_login', title: '登录状态'},
 			    {field: 'login_time', title: '登录时间'},
+			    {field: 'logout_time', title: '退出时间'},
 			    {field: 'update_by', title: '更新人'},
 			    {field: 'create_by', title: '创建人'},
+			    {field: 'is_login', title: '登录状态', align:'center', templet: function(d){
+			    	if(d.is_login == "1"){
+			    		return `<i class="layui-icon" style="color:#3ad651;">&#xe617;</i>`;
+			    	}else{
+			    		return `<i class="layui-icon" style="color:#d63a3a;">&#xe617;</i>`;
+			    	}
+			    }},
 			    {fixed: 'right', width: 150, align:'center', toolbar: '#actionTool'}
 		    ]],
             limit: 50,
