@@ -7,6 +7,7 @@ use App\Core\Payload\ServicePayload;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
 abstract class HttpAbstractService {
 
 	protected $request;
@@ -44,7 +45,7 @@ abstract class HttpAbstractService {
 		}
 	}
 
-	protected function respond($data = null, $message = null, $success = true, int $statusCode = 200): Response{
+	protected function respond($data = null, $message = "成功", $success = true, int $statusCode = 200): Response{
 		$payload = new ServicePayload($statusCode, $message, $data, $success);
 		$json = json_encode($payload, JSON_PRETTY_PRINT);
 		$this->response->getBody()->write($json);

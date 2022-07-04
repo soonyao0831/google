@@ -78,25 +78,8 @@
 			    value: new Date(),
 			});
 			$('#showDate').html($('#currentDate').val());
+			readOtpLog();
 		},1000);
-
-		//头部事件
-		util.event('lay-header-event', {
-			//左侧菜单事件
-			menuLeft: function(othis){
-			    layer.msg('展开左侧菜单的操作', {icon: 0});
-			},
-			menuRight: function(){
-			    layer.open({
-			        type: 1,
-			        content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
-			        area: ['400px', '100%'],
-			        offset: 'rt', //右上角
-			        anim: 5,
-			        shadeClose: true
-				});
-			}
-		});
 
 		$('#logoutBtn').click(function(){
 			loading = layer.load(1, {shade: [0.1,'#fff']});
@@ -152,6 +135,35 @@
 		function setOtpSession(){
 			$.post("/set/otp/session", [], function (res) {
             });
+		}
+
+		function readOtpLog(){
+			$.post("/list/all/otp/log", {}, function( res ) {
+				var html = '';
+				$.each( res.data , function( key, value ) {
+					html += `<div class="layui-font-12"><b>`+value.log_time+`</b> IP (`+value.log_ip+`)</div>`;
+					html += `<div class="layui-font-14">`+value.username+` : `+ value.log +`</div><br>`;
+				});
+				//头部事件
+				util.event('lay-header-event', {
+					//左侧菜单事件
+					menuLeft: function(othis){
+					    layer.msg('展开左侧菜单的操作', {icon: 0});
+					},
+					menuRight: function(){
+					    layer.open({
+					        type: 1,
+					        content: `<div style="padding: 15px;">
+		    							`+html+`
+		    						</div>`,
+					        area: ['400px', '100%'],
+					        offset: 'rt', //右上角
+					        anim: 5,
+					        shadeClose: true
+						});
+					}
+				});
+			});
 		}
 	});
 	</script>

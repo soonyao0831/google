@@ -56,8 +56,8 @@
 									<div class="layui-card-header"><b>`+value.display_name+`</b></div>
 									<hr class="layui-border-blue">
 									<div class="layui-card-body">
-										<button class="copybtn layui-btn layui-btn-normal" data-clipboard-text="`+value.secret+`">
-											<label id="`+value.account+`">`+value.secret+`</label>
+										<button class="copybtn layui-btn layui-btn-normal otpClickLog" data-clipboard-text="`+value.secret+`" data-name="`+value.display_name+`">
+											<label id="`+value.account+`">Click Me Copy OTP</label>
 										</button>
 									</div>
 									<div class="layui-card-body">
@@ -95,8 +95,8 @@
 												<div class="layui-card-header"><b>`+value.display_name+`</b></div>
 												<hr class="layui-border-blue">
 												<div class="layui-card-body">
-													<button class="copybtn layui-btn layui-btn-normal" data-clipboard-text="`+value.secret+`">
-														<label>`+value.secret+`</label>
+													<button class="copybtn layui-btn layui-btn-normal otpClickLog" data-clipboard-text="`+value.secret+`" data-name="`+value.display_name+`">
+														<label>Click Me Copy OTP</label>
 													</button>
 												</div>
 												<div class="layui-card-body">
@@ -135,5 +135,12 @@
         clipboard.on('error', function(e) {
             layer.msg("复制失败,请手动复制");
         });
+
+        $(document).on('click','.otpClickLog',function(){
+			$.post("/save/otp/click/log", {otp_name:$(this).data("name")}, function( res ) {
+
+			});
+		});
+
     });
 </script>
