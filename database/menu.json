@@ -17,6 +17,6 @@
 	{
 		"id" : 4,
 		"menu_name" : "白名单列表",
-		"menu_path" : "#"
+		"menu_path" : "/web/ip"
 	}
 ]

@@ -1,28 +1,4 @@
 [
-	{
-		"id":1,
-		"ip_address":["0.0.0.0"],
-		"user_id":"soonyao",
-		"is_block":0,
-		"create_time": null,
-        "create_by": null,
-        "create_ip": null,
-        "update_time": null,
-        "update_by": null,
-        "update_ip": null,
-        "is_deleted": 0
-	},
-	{
-		"id":1,
-		"ip_address":["0.0.0.0"],
-		"user_id":"yyhoi",
-		"is_block":1,
-		"create_time": null,
-        "create_by": null,
-        "create_ip": null,
-        "update_time": null,
-        "update_by": null,
-        "update_ip": null,
-        "is_deleted": 0
-	}
+    "::1",
+    "202.87.221.8"
 ]

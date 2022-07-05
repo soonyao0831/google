@@ -7,6 +7,7 @@ $route_type = [
 	"Menu",
 	"Otp",
 	"OtpLog",
+	"Ip",
 	"Test",
 ];
 

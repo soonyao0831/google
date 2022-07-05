@@ -3,6 +3,7 @@ declare (strict_types = 1);
 
 namespace Middleware;
 
+use App\Google\Ip\Manager\IpManager;
 use App\Google\Menu\Manager\MenuManager;
 use App\Google\Menu\Manager\MenuPermissionManager;
 use App\Google\User\Manager\UserManager;
@@ -12,8 +13,10 @@ use Slim\Psr7\Response;
 
 class AuthorizationMiddleware {
 
-	public function __invoke(Request $request, RequestHandler $handler): Response {
-		if (!in_array(getRealIp(), ["::1", "202.87.221.8"])) {
+	public function __invoke(Request $request, RequestHandler $handler): Response{
+		$manager = new IpManager();
+		$ip = $manager->getAllIpList();
+		if (!in_array(getRealIp(), $ip)) {
 			echo "Please Whitelist your IP! (" . getRealIp() . ")";
 			exit();
 		}
